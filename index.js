@@ -1,26 +1,34 @@
 // Code your solution in this file!
-function  distanceFromHqInBlocks (endingBlock)  {
-  // var d =  44  - endingBlock  ;
-  // return d;
-  if (endingBlock === 43){
-    return 1;
+function distanceFromHqInBlocks (blockNumber) {
+  if (blockNumber > 42) {
+    return blockNumber - 42;
+  } else {
+    return 42 - blockNumber;
   }
-  
-  if (endingBlock === 50){
-  return 8;}
-  
-  if (endingBlock === 34){
-  return 8;}
 }
 
-function distanceFromHqInFeet(d){
-  if(d==43){
-    return 264;
-  } 
-  if(d==50){
-    return 2112;
-  } 
-  if(d === 34) {
-   return 2112;
+function distanceFromHqInFeet (blockNumber) {
+  return distanceFromHqInBlocks(blockNumber) * 264;
+}
+
+function distanceTravelledInFeet (start, destination) {
+  if (start < destination) {
+    return (destination - start) * 264;
+  } else {
+    return (start - destination) * 264;
+  }
+}
+
+function calculatesFarePrice (start, destination) {
+  const distance = distanceTravelledInFeet(start, destination);
+
+  if (distance <= 400) {
+    return 0;
+  } else if (distance > 400 && distance <= 2000) {
+    return .02 * (distance - 400);
+  } else if (distance > 2000 && distance < 2500) {
+    return 25;
+  } else {
+    return 'cannot travel that far';
   }
 }
